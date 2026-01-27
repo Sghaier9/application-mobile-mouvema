@@ -1,0 +1,46 @@
+
+Projet Flutter – Structure du Code (Clean Architecture)
+
+Ce projet suit le modèle de **Clean Architecture**, une approche qui organise le code en couches bien séparées : présentation, domaine, données, et core/configuration. Cette structure rend le projet plus lisible, testable et maintenable.
+
+Ce fichier explique l’organisation du dossier `lib/`, qui contient l’intégralité du code source nécessaire pour comprendre la logique de l’application.
+
+1. Point d’entrée de l’application :
+   - **lib/main.dart** : Fichier principal de l'application Flutter. C’est à partir de ce fichier que l’application démarre.
+
+2. Dossier principal contenant l’architecture :
+   - **lib/src/** : Dossier racine contenant toute la logique métier, les composants visuels et les services.
+
+3. Description des sous-dossiers :
+   - **config/** : Configuration globale de l'application (navigation, thèmes, etc.).
+     - `routes/` : Gestion des routes (navigation entre les pages).
+     - `themes/` : Définition des couleurs et thèmes visuels.
+
+   - **core/** : Composants techniques réutilisables, comme :
+     - `failure.dart` : Gestion des erreurs.
+     - `internet_checker.dart` : Vérification de la connexion Internet.
+     - `helpers/` : Outils d'aide (date picker, validateur d’e-mail, sélection d’image).
+     - `utils/` : Utilitaires (gestion des couleurs, images, types de chargement, etc.).
+
+   - **data/** : Couche de données.
+     - `data_source/remote_data_source/` : Accès aux services distants (Firebase).
+     - `models/` : Modèles de données (Event, User...).
+     - `repository/` : Implémentation concrète des repositories définis dans `domain/`.
+
+   - **domain/** : Couche métier.
+     - `repositories/` : Interfaces des repositories (abstractions de la logique métier).
+
+   - **presentation/** : Interface utilisateur, divisée en modules fonctionnels :
+     - `login/`, `register/`, `home/`, `profile/`, `post_event/`, etc.
+     - Chaque module peut contenir :
+       - `cubit/` : Gestion de l’état avec le pattern BLoC.
+       - `pages/` : Écrans principaux.
+       - `widgets/` : Composants visuels réutilisables.
+
+   - **shared/** : Widgets et composants partagés entre plusieurs écrans (ex. : boutons, champs texte, alertes...).
+
+4. Fichiers additionnels :
+   - **app.dart** : Configuration principale de l’application (initialisation, thème, routing).
+   - **injector.dart** : Configuration de l’injection de dépendances (utilisée pour séparer les couches).
+
+
